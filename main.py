@@ -6,18 +6,26 @@ root.title("Calculadora POO")
 root.resizable(0,0)
 root.geometry("")
 
-
-
-
 #Configuración eventos
+global expresion
 expresion = ""
 
 def addValue(value):
+    global expresion
     expresion += value
+    pantalla.delete(0,'end')
+    pantalla.insert(50, expresion)
 
 def calcular():
-    pantalla.insert(0, eval(expresion))
-    expresion = ""
+    global expresion
+    try:
+        pantalla.delete(0,'end')
+        pantalla.insert(0, eval(expresion))
+        expresion = ""
+    except:
+        pantalla.delete(0,'end')
+        pantalla.insert(0, "Error")
+        expresion = ""
     
 
 # Configuración pantalla de salida 
